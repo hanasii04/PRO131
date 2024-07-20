@@ -25,13 +25,24 @@ namespace PRO131
             string pass = txtPass.Text.Trim();
             bool isQuanLy = radioQL.Checked;
             bool isNhanVien = radioNV.Checked;
+            
+            if(string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }    
 
+            if(radioNV.Checked == false && radioQL.Checked == false)
+            {
+                MessageBox.Show("Vui lòng chọn vai trò", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }    
             // Tìm kiếm tài khoản có tên người và mật khẩu khớp với thông tin nhập vào
-            var taiKhoan = qlba.TaiKhoans.FirstOrDefault(x => x.TenNguoiDung == user && x.MatKhau == pass);
+            var taiKhoan = qlba.TaiKhoan.FirstOrDefault(x => x.TenNguoiDung == user && x.MatKhau == pass);
             if (taiKhoan != null)
             {
                 // Tìm kiếm nhân viên có ID_TaiKhoan khớp với ID_TaiKhoan tài khoản vừa tìm được
-                var nhanVien = qlba.NhanViens.FirstOrDefault(x => x.ID_TaiKhoan == taiKhoan.ID_TaiKhoan);
+                var nhanVien = qlba.NhanVien.FirstOrDefault(x => x.ID_TaiKhoan == taiKhoan.ID_TaiKhoan);
                 if (nhanVien != null)
                 {
                     // Nếu người dùng chọn vai trò là quản lý và vai trò trong DB là "QuanLy" thì mở FormQuanLy
@@ -61,6 +72,10 @@ namespace PRO131
                 {
                     MessageBox.Show("Tài khoản không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Tài khoản không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
