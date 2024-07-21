@@ -48,7 +48,7 @@ namespace PRO131
                     // Nếu người dùng chọn vai trò là quản lý và vai trò trong DB là "QuanLy" thì mở FormQuanLy
                     if (isQuanLy && nhanVien.VaiTro == "QuanLy")
                     {
-                        FormQuanLy fql = new FormQuanLy();
+                        FormQuanLy fql = new FormQuanLy(user);
                         fql.Show();
                         this.Hide();
                         MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

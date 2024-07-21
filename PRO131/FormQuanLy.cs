@@ -12,9 +12,18 @@ namespace PRO131
 {
     public partial class FormQuanLy : Form
     {
-        public FormQuanLy()
+        private string tenNguoiDung;
+        public FormQuanLy(string tenNguoiDung)
         {
             InitializeComponent();
+            this.tenNguoiDung = tenNguoiDung;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            QuanLySP qlsp = new QuanLySP(this.tenNguoiDung);
+            qlsp.Show();
+            this.Hide();
         }
     }
 }

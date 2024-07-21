@@ -43,7 +43,7 @@
             this.radioConHang = new System.Windows.Forms.RadioButton();
             this.radioHetHang = new System.Windows.Forms.RadioButton();
             this.textBox19 = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridViewQLSP = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSoLuong = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -53,7 +53,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtThuongHieu = new System.Windows.Forms.TextBox();
             this.buttonThem = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.comboSize = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewQLSP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbQLSP)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,7 +149,7 @@
             // 
             // txtSize
             // 
-            this.txtSize.Location = new System.Drawing.Point(723, 87);
+            this.txtSize.Location = new System.Drawing.Point(759, 499);
             this.txtSize.Name = "txtSize";
             this.txtSize.Size = new System.Drawing.Size(282, 31);
             this.txtSize.TabIndex = 40;
@@ -182,15 +183,15 @@
             this.textBox19.Size = new System.Drawing.Size(282, 31);
             this.textBox19.TabIndex = 46;
             // 
-            // dataGridView1
+            // gridViewQLSP
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(49, 555);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 82;
-            this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(956, 427);
-            this.dataGridView1.TabIndex = 47;
+            this.gridViewQLSP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridViewQLSP.Location = new System.Drawing.Point(49, 555);
+            this.gridViewQLSP.Name = "gridViewQLSP";
+            this.gridViewQLSP.RowHeadersWidth = 82;
+            this.gridViewQLSP.RowTemplate.Height = 33;
+            this.gridViewQLSP.Size = new System.Drawing.Size(956, 427);
+            this.gridViewQLSP.TabIndex = 47;
             // 
             // label2
             // 
@@ -269,11 +270,20 @@
             this.buttonThem.UseVisualStyleBackColor = true;
             this.buttonThem.Click += new System.EventHandler(this.buttonThem_Click);
             // 
+            // comboSize
+            // 
+            this.comboSize.FormattingEnabled = true;
+            this.comboSize.Location = new System.Drawing.Point(723, 84);
+            this.comboSize.Name = "comboSize";
+            this.comboSize.Size = new System.Drawing.Size(282, 33);
+            this.comboSize.TabIndex = 59;
+            // 
             // QuanLySP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1053, 1026);
+            this.Controls.Add(this.comboSize);
             this.Controls.Add(this.buttonThem);
             this.Controls.Add(this.txtThuongHieu);
             this.Controls.Add(this.label7);
@@ -283,7 +293,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtSoLuong);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.gridViewQLSP);
             this.Controls.Add(this.textBox19);
             this.Controls.Add(this.radioHetHang);
             this.Controls.Add(this.radioConHang);
@@ -301,7 +311,8 @@
             this.Controls.Add(this.label1);
             this.Name = "QuanLySP";
             this.Text = "QuanLySP";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.QuanLySP_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewQLSP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbQLSP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -325,7 +336,7 @@
         private System.Windows.Forms.RadioButton radioConHang;
         private System.Windows.Forms.RadioButton radioHetHang;
         private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gridViewQLSP;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSoLuong;
         private System.Windows.Forms.Button button2;
@@ -335,5 +346,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtThuongHieu;
         private System.Windows.Forms.Button buttonThem;
+        private System.Windows.Forms.ComboBox comboSize;
     }
 }
