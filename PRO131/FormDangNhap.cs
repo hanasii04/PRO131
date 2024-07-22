@@ -18,31 +18,31 @@ namespace PRO131
             InitializeComponent();
         }
 
-        QuanLyBanAo qlba = new QuanLyBanAo();
+        DuAn da = new DuAn();
         private void buttonDangNhap_Click(object sender, EventArgs e)
         {
             string user = txtUser.Text.Trim();
             string pass = txtPass.Text.Trim();
             bool isQuanLy = radioQL.Checked;
             bool isNhanVien = radioNV.Checked;
-            
-            if(string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
+
+            if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            }    
+            }
 
-            if(radioNV.Checked == false && radioQL.Checked == false)
+            if (radioNV.Checked == false && radioQL.Checked == false)
             {
                 MessageBox.Show("Vui lòng chọn vai trò", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-            }    
+            }
             // Tìm kiếm tài khoản có tên người và mật khẩu khớp với thông tin nhập vào
-            var taiKhoan = qlba.TaiKhoan.FirstOrDefault(x => x.TenNguoiDung == user && x.MatKhau == pass);
+            var taiKhoan = da.TaiKhoans.FirstOrDefault(x => x.TenNguoiDung == user && x.MatKhau == pass);
             if (taiKhoan != null)
             {
                 // Tìm kiếm nhân viên có ID_TaiKhoan khớp với ID_TaiKhoan tài khoản vừa tìm được
-                var nhanVien = qlba.NhanVien.FirstOrDefault(x => x.ID_TaiKhoan == taiKhoan.ID_TaiKhoan);
+                var nhanVien = da.NhanViens.FirstOrDefault(x => x.ID_TaiKhoan == taiKhoan.ID_TaiKhoan);
                 if (nhanVien != null)
                 {
                     // Nếu người dùng chọn vai trò là quản lý và vai trò trong DB là "QuanLy" thì mở FormQuanLy

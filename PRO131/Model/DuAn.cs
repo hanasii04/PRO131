@@ -6,21 +6,20 @@ using System.Linq;
 
 namespace PRO131.Model
 {
-    public class QuanLyBanAo : DbContext
+    public class DuAn : DbContext
     {
-
-        public QuanLyBanAo()
-            : base("name=QuanLyBanAo")
+        public DuAn()
+            : base("name=DuAn")
         {
         }
 
-        public virtual DbSet<TAIKHOAN> TaiKhoan { get; set; }
-        public virtual DbSet<SANPHAM> SanPham { get; set; }
-        public virtual DbSet<CHITIETSANPHAM> ChiTietSanPham { get; set; }
-        public virtual DbSet<NHANVIEN> NhanVien { get; set; }
-        public virtual DbSet<VOUCHER> Voucher { get; set; }
-        public virtual DbSet<HOADON> HoaDon { get; set; }
-        public virtual DbSet<HOADONCHITIET> HoaDonChiTiet { get; set; }
+        public virtual DbSet<TAIKHOAN> TaiKhoans { get; set; }
+        public virtual DbSet<SANPHAM> SanPhams { get; set; }
+        public virtual DbSet<CHITIETSANPHAM> ChiTietSanPhams { get; set; }
+        public virtual DbSet<NHANVIEN> NhanViens { get; set; }
+        public virtual DbSet<VOUCHER> Vouchers { get; set; }
+        public virtual DbSet<HOADON> HoaDons { get; set; }
+        public virtual DbSet<HOADONCHITIET> HoaDonChiTiets { get; set; }
 
     }
 
@@ -174,4 +173,5 @@ namespace PRO131.Model
         [ForeignKey("ID_ChiTietSP")]
         public virtual CHITIETSANPHAM ChiTietSanPham { get; set; }
     }
+
 }

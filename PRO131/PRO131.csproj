@@ -73,7 +73,7 @@
     <Compile Include="FormQuanLy.Designer.cs">
       <DependentUpon>FormQuanLy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\QuanLyBanAo.cs" />
+    <Compile Include="Model\DuAn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuanLySP.cs">

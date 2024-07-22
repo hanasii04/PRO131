@@ -15,8 +15,8 @@ namespace PRO131
         [STAThread]
         static void Main()
         {
-            QuanLyBanAo qlba = new QuanLyBanAo();
-            qlba.Database.CreateIfNotExists();
+            DuAn da = new DuAn();
+            da.Database.CreateIfNotExists();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

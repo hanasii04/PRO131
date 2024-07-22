@@ -18,24 +18,20 @@ namespace PRO131
         {
             InitializeComponent();
             this.tenNguoiDung = tenNguoiDung;
-            comboSize.Items.Add("S");
-            comboSize.Items.Add("M");
-            comboSize.Items.Add("L");
-            comboSize.Items.Add("XL");
         }
 
-        QuanLyBanAo qlba = new QuanLyBanAo();
+        DuAn da = new DuAn();
 
         private void QuanLySP_Load(object sender, EventArgs e)
         {
-            var query = from sp in qlba.SanPham
-                        join ctsp in qlba.ChiTietSanPham
+            var query = from sp in da.SanPhams
+                        join ctsp in da.ChiTietSanPhams
                         on sp.ID_SanPham equals ctsp.ID_SanPham
-                        join tk in qlba.TaiKhoan
+                        join tk in da.TaiKhoans
                         on sp.ID_TaiKhoan equals tk.ID_TaiKhoan
                         select new SanPhamChiTietDTO
                         {
-                            ID_SanPham = ctsp.ID_ChiTietSP,
+                            ID_SanPham = sp.ID_SanPham,
                             TenSanPham = sp.TenSanPham,
                             GiaNhap = sp.GiaNhap,
                             GiaBan = sp.GiaBan,
@@ -49,18 +45,13 @@ namespace PRO131
                             NgayCapNhat = sp.NgayCapNhat,
                             NguoiTao = tk.TenNguoiDung,
                             NguoiCapNhat = tk.TenNguoiDung
+
                         };
 
             var result = query.ToList();
-
-            if (result == null || !result.Any())
-            {
-                MessageBox.Show("Không có dữ liệu để hiển thị.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                gridViewQLSP.DataSource = result;
-            }
+            gridViewQLSP.DataSource = result;
+            //List<SANPHAM> sp = da.SanPhams.ToList();
+            //gridViewQLSP.DataSource = sp;
         }
 
 
@@ -72,7 +63,7 @@ namespace PRO131
             string giaBan = txtGiaBan.Text.Trim();
             string soLuong = txtSoLuong.Text.Trim();
             string mauSac = txtMauSac.Text.Trim();
-            string size = comboSize.SelectedItem.ToString().Trim();
+            string size = txtSize.Text.Trim();
             string thuongHieu = txtThuongHieu.Text.Trim();
             string hinhAnh = txtHinhAnh.Text.Trim();
             string trangThai = "";
@@ -158,8 +149,6 @@ namespace PRO131
                 return;
             }
 
-            // In ra giá trị để kiểm tra
-            MessageBox.Show($"Giá nhập: {giaNhapS}, Giá bán: {giaBanS}");
 
             if (giaBanS <= giaNhapS)
             {
@@ -210,9 +199,9 @@ namespace PRO131
 
             try
             {
-                qlba.SanPham.Add(sp);
-                qlba.ChiTietSanPham.Add(ctsp);
-                qlba.SaveChanges(); // Lưu các thay đổi vào cơ sở dữ liệu
+                da.SanPhams.Add(sp);
+                da.ChiTietSanPhams.Add(ctsp);
+                da.SaveChanges(); // Lưu các thay đổi vào cơ sở dữ liệu
                 QuanLySP_Load(sender, e); // Gọi lại phương thức load để cập nhật dữ liệu
 
                 MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -223,5 +212,6 @@ namespace PRO131
             }
 
         }
+
     }
 }

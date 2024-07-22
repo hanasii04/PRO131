@@ -39,7 +39,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtHinhAnh = new System.Windows.Forms.TextBox();
             this.txtMauSac = new System.Windows.Forms.TextBox();
-            this.txtSize = new System.Windows.Forms.TextBox();
             this.radioConHang = new System.Windows.Forms.RadioButton();
             this.radioHetHang = new System.Windows.Forms.RadioButton();
             this.textBox19 = new System.Windows.Forms.TextBox();
@@ -53,7 +52,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtThuongHieu = new System.Windows.Forms.TextBox();
             this.buttonThem = new System.Windows.Forms.Button();
-            this.comboSize = new System.Windows.Forms.ComboBox();
+            this.txtSize = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewQLSP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbQLSP)).BeginInit();
             this.SuspendLayout();
@@ -147,13 +146,6 @@
             this.txtMauSac.Size = new System.Drawing.Size(282, 31);
             this.txtMauSac.TabIndex = 39;
             // 
-            // txtSize
-            // 
-            this.txtSize.Location = new System.Drawing.Point(759, 499);
-            this.txtSize.Name = "txtSize";
-            this.txtSize.Size = new System.Drawing.Size(282, 31);
-            this.txtSize.TabIndex = 40;
-            // 
             // radioConHang
             // 
             this.radioConHang.AutoSize = true;
@@ -186,11 +178,11 @@
             // gridViewQLSP
             // 
             this.gridViewQLSP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridViewQLSP.Location = new System.Drawing.Point(49, 555);
+            this.gridViewQLSP.Location = new System.Drawing.Point(49, 537);
             this.gridViewQLSP.Name = "gridViewQLSP";
             this.gridViewQLSP.RowHeadersWidth = 82;
             this.gridViewQLSP.RowTemplate.Height = 33;
-            this.gridViewQLSP.Size = new System.Drawing.Size(956, 427);
+            this.gridViewQLSP.Size = new System.Drawing.Size(956, 659);
             this.gridViewQLSP.TabIndex = 47;
             // 
             // label2
@@ -270,20 +262,19 @@
             this.buttonThem.UseVisualStyleBackColor = true;
             this.buttonThem.Click += new System.EventHandler(this.buttonThem_Click);
             // 
-            // comboSize
+            // txtSize
             // 
-            this.comboSize.FormattingEnabled = true;
-            this.comboSize.Location = new System.Drawing.Point(723, 84);
-            this.comboSize.Name = "comboSize";
-            this.comboSize.Size = new System.Drawing.Size(282, 33);
-            this.comboSize.TabIndex = 59;
+            this.txtSize.Location = new System.Drawing.Point(723, 87);
+            this.txtSize.Name = "txtSize";
+            this.txtSize.Size = new System.Drawing.Size(282, 31);
+            this.txtSize.TabIndex = 59;
             // 
             // QuanLySP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 1026);
-            this.Controls.Add(this.comboSize);
+            this.ClientSize = new System.Drawing.Size(1050, 1226);
+            this.Controls.Add(this.txtSize);
             this.Controls.Add(this.buttonThem);
             this.Controls.Add(this.txtThuongHieu);
             this.Controls.Add(this.label7);
@@ -297,7 +288,6 @@
             this.Controls.Add(this.textBox19);
             this.Controls.Add(this.radioHetHang);
             this.Controls.Add(this.radioConHang);
-            this.Controls.Add(this.txtSize);
             this.Controls.Add(this.txtMauSac);
             this.Controls.Add(this.txtHinhAnh);
             this.Controls.Add(this.label12);
@@ -332,7 +322,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtHinhAnh;
         private System.Windows.Forms.TextBox txtMauSac;
-        private System.Windows.Forms.TextBox txtSize;
         private System.Windows.Forms.RadioButton radioConHang;
         private System.Windows.Forms.RadioButton radioHetHang;
         private System.Windows.Forms.TextBox textBox19;
@@ -346,6 +335,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtThuongHieu;
         private System.Windows.Forms.Button buttonThem;
-        private System.Windows.Forms.ComboBox comboSize;
+        private System.Windows.Forms.TextBox txtSize;
     }
 }
