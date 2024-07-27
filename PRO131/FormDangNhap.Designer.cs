@@ -33,19 +33,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.txtUser = new System.Windows.Forms.TextBox();
-            this.radioQL = new System.Windows.Forms.RadioButton();
-            this.radioNV = new System.Windows.Forms.RadioButton();
             this.buttonThoat = new System.Windows.Forms.Button();
             this.buttonDangNhap = new System.Windows.Forms.Button();
+            this.cbHienThiMatKhau = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(141, 62);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(182, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(476, 42);
+            this.label1.Size = new System.Drawing.Size(549, 59);
             this.label1.TabIndex = 10;
             this.label1.Text = "Phần mềm quản lý bán áo";
             // 
@@ -53,7 +52,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(86, 185);
+            this.label2.Location = new System.Drawing.Point(112, 140);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(216, 33);
             this.label2.TabIndex = 11;
@@ -63,7 +62,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(86, 273);
+            this.label3.Location = new System.Drawing.Point(112, 240);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(134, 33);
             this.label3.TabIndex = 12;
@@ -71,68 +70,57 @@
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(341, 273);
+            this.txtPass.Location = new System.Drawing.Point(385, 244);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(290, 31);
+            this.txtPass.PasswordChar = '*';
+            this.txtPass.Size = new System.Drawing.Size(401, 31);
             this.txtPass.TabIndex = 13;
             // 
             // txtUser
             // 
-            this.txtUser.Location = new System.Drawing.Point(341, 189);
+            this.txtUser.Location = new System.Drawing.Point(385, 144);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(290, 31);
+            this.txtUser.Size = new System.Drawing.Size(401, 31);
             this.txtUser.TabIndex = 14;
-            // 
-            // radioQL
-            // 
-            this.radioQL.AutoSize = true;
-            this.radioQL.Location = new System.Drawing.Point(92, 364);
-            this.radioQL.Name = "radioQL";
-            this.radioQL.Size = new System.Drawing.Size(117, 29);
-            this.radioQL.TabIndex = 15;
-            this.radioQL.TabStop = true;
-            this.radioQL.Text = "Quản lý";
-            this.radioQL.UseVisualStyleBackColor = true;
-            // 
-            // radioNV
-            // 
-            this.radioNV.AutoSize = true;
-            this.radioNV.Location = new System.Drawing.Point(341, 364);
-            this.radioNV.Name = "radioNV";
-            this.radioNV.Size = new System.Drawing.Size(140, 29);
-            this.radioNV.TabIndex = 16;
-            this.radioNV.TabStop = true;
-            this.radioNV.Text = "Nhân viên";
-            this.radioNV.UseVisualStyleBackColor = true;
             // 
             // buttonThoat
             // 
-            this.buttonThoat.Location = new System.Drawing.Point(470, 452);
+            this.buttonThoat.Location = new System.Drawing.Point(575, 358);
             this.buttonThoat.Name = "buttonThoat";
-            this.buttonThoat.Size = new System.Drawing.Size(161, 67);
+            this.buttonThoat.Size = new System.Drawing.Size(211, 67);
             this.buttonThoat.TabIndex = 17;
             this.buttonThoat.Text = "Thoát";
             this.buttonThoat.UseVisualStyleBackColor = true;
             // 
             // buttonDangNhap
             // 
-            this.buttonDangNhap.Location = new System.Drawing.Point(92, 452);
+            this.buttonDangNhap.Location = new System.Drawing.Point(118, 358);
             this.buttonDangNhap.Name = "buttonDangNhap";
-            this.buttonDangNhap.Size = new System.Drawing.Size(161, 67);
+            this.buttonDangNhap.Size = new System.Drawing.Size(215, 67);
             this.buttonDangNhap.TabIndex = 18;
             this.buttonDangNhap.Text = "Đăng nhập";
             this.buttonDangNhap.UseVisualStyleBackColor = true;
             this.buttonDangNhap.Click += new System.EventHandler(this.buttonDangNhap_Click);
             // 
+            // cbHienThiMatKhau
+            // 
+            this.cbHienThiMatKhau.AutoSize = true;
+            this.cbHienThiMatKhau.Location = new System.Drawing.Point(575, 301);
+            this.cbHienThiMatKhau.Name = "cbHienThiMatKhau";
+            this.cbHienThiMatKhau.Size = new System.Drawing.Size(211, 29);
+            this.cbHienThiMatKhau.TabIndex = 19;
+            this.cbHienThiMatKhau.Text = "Hiển thị mật khẩu";
+            this.cbHienThiMatKhau.UseVisualStyleBackColor = true;
+            this.cbHienThiMatKhau.CheckedChanged += new System.EventHandler(this.cbHienThiMatKhau_CheckedChanged);
+            // 
             // FormDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 592);
+            this.ClientSize = new System.Drawing.Size(900, 471);
+            this.Controls.Add(this.cbHienThiMatKhau);
             this.Controls.Add(this.buttonDangNhap);
             this.Controls.Add(this.buttonThoat);
-            this.Controls.Add(this.radioNV);
-            this.Controls.Add(this.radioQL);
             this.Controls.Add(this.txtUser);
             this.Controls.Add(this.txtPass);
             this.Controls.Add(this.label3);
@@ -152,9 +140,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.TextBox txtUser;
-        private System.Windows.Forms.RadioButton radioQL;
-        private System.Windows.Forms.RadioButton radioNV;
         private System.Windows.Forms.Button buttonThoat;
         private System.Windows.Forms.Button buttonDangNhap;
+        private System.Windows.Forms.CheckBox cbHienThiMatKhau;
     }
 }

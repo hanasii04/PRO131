@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRO131.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +13,17 @@ namespace PRO131
 {
     public partial class FormQuanLy : Form
     {
-        private string tenNguoiDung;
-        public FormQuanLy(string tenNguoiDung)
+        private string idNhanVien;
+        public FormQuanLy(string idNhanVien)
         {
             InitializeComponent();
-            this.tenNguoiDung = tenNguoiDung;
+            this.idNhanVien = idNhanVien;
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            QuanLySP qlsp = new QuanLySP(this.tenNguoiDung);
+            QuanLySP qlsp = new QuanLySP(this.idNhanVien);
             qlsp.Show();
             this.Hide();
         }

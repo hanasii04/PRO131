@@ -19,12 +19,11 @@ namespace PRO131
         }
 
         DuAn da = new DuAn();
+        //TAIKHOAN tk = new TAIKHOAN();
         private void buttonDangNhap_Click(object sender, EventArgs e)
         {
             string user = txtUser.Text.Trim();
             string pass = txtPass.Text.Trim();
-            bool isQuanLy = radioQL.Checked;
-            bool isNhanVien = radioNV.Checked;
 
             if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
             {
@@ -32,50 +31,48 @@ namespace PRO131
                 return;
             }
 
-            if (radioNV.Checked == false && radioQL.Checked == false)
-            {
-                MessageBox.Show("Vui lòng chọn vai trò", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
             // Tìm kiếm tài khoản có tên người và mật khẩu khớp với thông tin nhập vào
-            var taiKhoan = da.TaiKhoans.FirstOrDefault(x => x.TenNguoiDung == user && x.MatKhau == pass);
-            if (taiKhoan != null)
+            var nhanVien = da.NhanViens.FirstOrDefault(x => x.TenNguoiDung == user && x.MatKhau == pass);
+            if (nhanVien != null)
             {
-                // Tìm kiếm nhân viên có ID_TaiKhoan khớp với ID_TaiKhoan tài khoản vừa tìm được
-                var nhanVien = da.NhanViens.FirstOrDefault(x => x.ID_TaiKhoan == taiKhoan.ID_TaiKhoan);
-                if (nhanVien != null)
+                // Nếu người dùng chọn vai trò là quản lý và vai trò trong DB là "QuanLy" thì mở FormQuanLy
+                if (nhanVien.VaiTro == "QuanLy")
                 {
-                    // Nếu người dùng chọn vai trò là quản lý và vai trò trong DB là "QuanLy" thì mở FormQuanLy
-                    if (isQuanLy && nhanVien.VaiTro == "QuanLy")
-                    {
-                        FormQuanLy fql = new FormQuanLy(user);
-                        fql.Show();
-                        this.Hide();
-                        MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    else if (isNhanVien && nhanVien.VaiTro == "NhanVien")
-                    {
-                        FormNhanVien fnv = new FormNhanVien();
-                        fnv.Show();
-                        this.Hide();
-                        MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Sai vai trò hoặc tài khoản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return;
-                    }
+                    FormQuanLy fql = new FormQuanLy(nhanVien.ID_NhanVien);
+                    fql.Show();
+                    this.Hide();
+                    MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else if (nhanVien.VaiTro == "NhanVien")
+                {
+                    FormNhanVien fnv = new FormNhanVien();
+                    fnv.Show();
+                    this.Hide();
+                    MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("Tài khoản không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Sai tài khoản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
             }
             else
             {
                 MessageBox.Show("Tài khoản không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void cbHienThiMatKhau_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cbHienThiMatKhau.Checked)
+            {
+                txtPass.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPass.PasswordChar = '*';
             }
         }
     }
