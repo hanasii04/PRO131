@@ -28,80 +28,90 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonQLSP = new System.Windows.Forms.Button();
+            this.buttonBH = new System.Windows.Forms.Button();
+            this.buttonTK = new System.Windows.Forms.Button();
+            this.buttonQLVC = new System.Windows.Forms.Button();
+            this.buttonQLHD = new System.Windows.Forms.Button();
+            this.buttonQLNV = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonQLSP
             // 
-            this.button1.Location = new System.Drawing.Point(119, 114);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(181, 109);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Quản lý sản phẩm";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonQLSP.Location = new System.Drawing.Point(93, 104);
+            this.buttonQLSP.Name = "buttonQLSP";
+            this.buttonQLSP.Size = new System.Drawing.Size(368, 164);
+            this.buttonQLSP.TabIndex = 6;
+            this.buttonQLSP.Text = "Quản lý sản phẩm";
+            this.buttonQLSP.UseVisualStyleBackColor = true;
+            this.buttonQLSP.Click += new System.EventHandler(this.buttonQLSP_Click);
             // 
-            // button2
+            // buttonBH
             // 
-            this.button2.Location = new System.Drawing.Point(818, 114);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(181, 109);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Thống kê";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonBH.Location = new System.Drawing.Point(93, 1310);
+            this.buttonBH.Name = "buttonBH";
+            this.buttonBH.Size = new System.Drawing.Size(368, 164);
+            this.buttonBH.TabIndex = 12;
+            this.buttonBH.Text = "Bán hàng";
+            this.buttonBH.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonTK
             // 
-            this.button3.Location = new System.Drawing.Point(469, 114);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(181, 109);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Cập nhật sản phẩm";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonTK.Location = new System.Drawing.Point(93, 1071);
+            this.buttonTK.Name = "buttonTK";
+            this.buttonTK.Size = new System.Drawing.Size(368, 164);
+            this.buttonTK.TabIndex = 13;
+            this.buttonTK.Text = "Thống kê";
+            this.buttonTK.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonQLVC
             // 
-            this.button4.Location = new System.Drawing.Point(469, 342);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(181, 109);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Cập nhật voucher";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonQLVC.Location = new System.Drawing.Point(93, 834);
+            this.buttonQLVC.Name = "buttonQLVC";
+            this.buttonQLVC.Size = new System.Drawing.Size(368, 164);
+            this.buttonQLVC.TabIndex = 14;
+            this.buttonQLVC.Text = "Quản lý voucher";
+            this.buttonQLVC.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // buttonQLHD
             // 
-            this.button5.Location = new System.Drawing.Point(119, 342);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(181, 109);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Thêm voucher";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonQLHD.Location = new System.Drawing.Point(93, 586);
+            this.buttonQLHD.Name = "buttonQLHD";
+            this.buttonQLHD.Size = new System.Drawing.Size(368, 164);
+            this.buttonQLHD.TabIndex = 15;
+            this.buttonQLHD.Text = "Quản lý hóa đơn";
+            this.buttonQLHD.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // buttonQLNV
             // 
-            this.button6.Location = new System.Drawing.Point(818, 342);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(181, 109);
-            this.button6.TabIndex = 5;
-            this.button6.Text = "Bán hàng";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonQLNV.Location = new System.Drawing.Point(93, 347);
+            this.buttonQLNV.Name = "buttonQLNV";
+            this.buttonQLNV.Size = new System.Drawing.Size(368, 164);
+            this.buttonQLNV.TabIndex = 16;
+            this.buttonQLNV.Text = "Quản lý nhân viên";
+            this.buttonQLNV.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Location = new System.Drawing.Point(535, 104);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(2248, 1370);
+            this.panel1.TabIndex = 17;
             // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1144, 585);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(2884, 1629);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.buttonQLNV);
+            this.Controls.Add(this.buttonQLHD);
+            this.Controls.Add(this.buttonQLVC);
+            this.Controls.Add(this.buttonTK);
+            this.Controls.Add(this.buttonBH);
+            this.Controls.Add(this.buttonQLSP);
             this.Name = "FormQuanLy";
             this.Text = "FormQuanLy";
             this.ResumeLayout(false);
@@ -109,12 +119,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonQLSP;
+        private System.Windows.Forms.Button buttonBH;
+        private System.Windows.Forms.Button buttonTK;
+        private System.Windows.Forms.Button buttonQLVC;
+        private System.Windows.Forms.Button buttonQLHD;
+        private System.Windows.Forms.Button buttonQLNV;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -20,8 +20,7 @@ namespace PRO131
             this.idNhanVien = idNhanVien;
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonQLSP_Click(object sender, EventArgs e)
         {
             QuanLySP qlsp = new QuanLySP(this.idNhanVien);
             qlsp.Show();
