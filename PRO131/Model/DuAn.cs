@@ -29,12 +29,11 @@ namespace PRO131.Model
     {
         [Key]
         public string ID_NhanVien { get; set; }
+        public string TenNhanVien { get; set; }
         public string TenNguoiDung { get; set; }
         public string MatKhau { get; set; }
-        public string TenNhanVien { get; set; }
         public string SDT { get; set; }
         public string DiaChi { get; set; }
-        public string SoCCCD { get; set; }
         public string TrangThai { get; set; }
         public string VaiTro { get; set; }
         public DateTime NgayTao { get; set; }
@@ -83,14 +82,13 @@ namespace PRO131.Model
     {
         [Key]
         public string ID_ChiTietSP { get; set; }
+        public string ID_SanPham { get; set; }
         public string TrangThai { get; set; }
-        public string HinhAnh { get; set; }
         public int SoLuong { get; set; }
         public DateTime NgayTao { get; set; }
         public DateTime NgayCapNhat { get; set; }
         public string NguoiTao { get; set; }
         public string NguoiCapNhat { get; set; }
-        public string ID_SanPham { get; set; }
 
         [ForeignKey("ID_SanPham")]
         public virtual SANPHAM SanPham { get; set; }
@@ -126,7 +124,6 @@ namespace PRO131.Model
         public string ID_KichCo { get; set; }
         public string ThuongHieu { get; set; }
         public string ID_ThuongHieu { get; set; }
-        public string HinhAnh { get; set; }
         public string TrangThai { get; set; }
         public DateTime NgayTao { get; set; }
         public DateTime NgayCapNhat { get; set; }
@@ -147,7 +144,6 @@ namespace PRO131.Model
         public string NguoiTao { get; set; }
         public string NguoiCapNhat { get; set; }
         public DateTime HanSuDung { get; set; }
-        public string TrangThai { get; set; }
     }
 
     public class HOADON
@@ -156,6 +152,7 @@ namespace PRO131.Model
         public string ID_HoaDon { get; set; }
         public string TenKH { get; set; }
         public string TrangThai { get; set; }
+        public decimal TongTien { get; set; }
         public DateTime NgayTao { get; set; }
         public DateTime NgayCapNhat { get; set; }
         public string NguoiTao { get; set; }
@@ -179,7 +176,6 @@ namespace PRO131.Model
         public string MauSac { get; set; }
         public string KichCo { get; set; }
         public int SoLuong { get; set; }
-        public decimal TongTien { get; set; }
         public DateTime NgayTao { get; set; }
         public DateTime NgayCapNhat { get; set; }
         public string NguoiTao { get; set; }
@@ -191,6 +187,18 @@ namespace PRO131.Model
         public string ID_ChiTietSP { get; set; }
         [ForeignKey("ID_ChiTietSP")]
         public virtual CHITIETSANPHAM ChiTietSanPham { get; set; }
+    }
+
+    public class HoaDonItem
+    {
+        public int STT { get; set; }
+        public string IDSanPham { get; set; }
+        public int IDHoaDon { get; set; }
+        public string IDNhanVien { get; set; }
+        public DateTime NgayTao { get; set; }
+        public int SoLuong { get; set; }
+        public decimal ThanhTien { get; set; }
+        public string TrangThai { get; set; }
     }
 
 }

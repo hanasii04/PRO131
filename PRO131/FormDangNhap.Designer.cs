@@ -36,17 +36,18 @@
             this.buttonThoat = new System.Windows.Forms.Button();
             this.buttonDangNhap = new System.Windows.Forms.Button();
             this.cbHienThiMatKhau = new System.Windows.Forms.CheckBox();
+            this.labeQuenMK = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(182, 32);
+            this.label1.Location = new System.Drawing.Point(108, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(549, 59);
+            this.label1.Size = new System.Drawing.Size(671, 59);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Phần mềm quản lý bán áo";
+            this.label1.Text = "Phần mềm bán áo Couture Shirt";
             // 
             // label2
             // 
@@ -85,7 +86,7 @@
             // 
             // buttonThoat
             // 
-            this.buttonThoat.Location = new System.Drawing.Point(575, 358);
+            this.buttonThoat.Location = new System.Drawing.Point(575, 379);
             this.buttonThoat.Name = "buttonThoat";
             this.buttonThoat.Size = new System.Drawing.Size(211, 67);
             this.buttonThoat.TabIndex = 17;
@@ -94,7 +95,7 @@
             // 
             // buttonDangNhap
             // 
-            this.buttonDangNhap.Location = new System.Drawing.Point(118, 358);
+            this.buttonDangNhap.Location = new System.Drawing.Point(118, 379);
             this.buttonDangNhap.Name = "buttonDangNhap";
             this.buttonDangNhap.Size = new System.Drawing.Size(215, 67);
             this.buttonDangNhap.TabIndex = 18;
@@ -105,7 +106,7 @@
             // cbHienThiMatKhau
             // 
             this.cbHienThiMatKhau.AutoSize = true;
-            this.cbHienThiMatKhau.Location = new System.Drawing.Point(575, 301);
+            this.cbHienThiMatKhau.Location = new System.Drawing.Point(575, 316);
             this.cbHienThiMatKhau.Name = "cbHienThiMatKhau";
             this.cbHienThiMatKhau.Size = new System.Drawing.Size(211, 29);
             this.cbHienThiMatKhau.TabIndex = 19;
@@ -113,11 +114,22 @@
             this.cbHienThiMatKhau.UseVisualStyleBackColor = true;
             this.cbHienThiMatKhau.CheckedChanged += new System.EventHandler(this.cbHienThiMatKhau_CheckedChanged);
             // 
+            // labeQuenMK
+            // 
+            this.labeQuenMK.AutoSize = true;
+            this.labeQuenMK.Location = new System.Drawing.Point(113, 320);
+            this.labeQuenMK.Name = "labeQuenMK";
+            this.labeQuenMK.Size = new System.Drawing.Size(170, 25);
+            this.labeQuenMK.TabIndex = 20;
+            this.labeQuenMK.Text = "Quên mật khẩu?";
+            this.labeQuenMK.DoubleClick += new System.EventHandler(this.labeQuenMK_DoubleClick);
+            // 
             // FormDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 471);
+            this.Controls.Add(this.labeQuenMK);
             this.Controls.Add(this.cbHienThiMatKhau);
             this.Controls.Add(this.buttonDangNhap);
             this.Controls.Add(this.buttonThoat);
@@ -127,7 +139,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormDangNhap";
-            this.Text = "FormDangNhap";
+            this.Text = "Đăng nhập";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +155,6 @@
         private System.Windows.Forms.Button buttonThoat;
         private System.Windows.Forms.Button buttonDangNhap;
         private System.Windows.Forms.CheckBox cbHienThiMatKhau;
+        private System.Windows.Forms.Label labeQuenMK;
     }
 }

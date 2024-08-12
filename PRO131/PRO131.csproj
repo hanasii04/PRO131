@@ -33,11 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -55,17 +61,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BanHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BanHang.Designer.cs">
+      <DependentUpon>BanHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormDangNhap.Designer.cs">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormNhanVien.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormNhanVien.Designer.cs">
-      <DependentUpon>FormNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="FormQuanLy.cs">
       <SubType>Form</SubType>
@@ -82,17 +88,41 @@
     <Compile Include="QuanLyHD.Designer.cs">
       <DependentUpon>QuanLyHD.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyNV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyNV.Designer.cs">
+      <DependentUpon>QuanLyNV.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuanLySP.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="QuanLySP.Designer.cs">
       <DependentUpon>QuanLySP.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyVC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyVC.Designer.cs">
+      <DependentUpon>QuanLyVC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuenMK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuenMK.Designer.cs">
+      <DependentUpon>QuenMK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThongKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongKe.Designer.cs">
+      <DependentUpon>ThongKe.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BanHang.resx">
+      <DependentUpon>BanHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDangNhap.resx">
       <DependentUpon>FormDangNhap.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormNhanVien.resx">
-      <DependentUpon>FormNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormQuanLy.resx">
       <DependentUpon>FormQuanLy.cs</DependentUpon>
@@ -109,8 +139,20 @@
     <EmbeddedResource Include="QuanLyHD.resx">
       <DependentUpon>QuanLyHD.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyNV.resx">
+      <DependentUpon>QuanLyNV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuanLySP.resx">
       <DependentUpon>QuanLySP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyVC.resx">
+      <DependentUpon>QuanLyVC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuenMK.resx">
+      <DependentUpon>QuenMK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongKe.resx">
+      <DependentUpon>ThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

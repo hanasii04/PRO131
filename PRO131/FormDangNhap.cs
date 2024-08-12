@@ -19,7 +19,6 @@ namespace PRO131
         }
 
         DuAn da = new DuAn();
-        //TAIKHOAN tk = new TAIKHOAN();
         private void buttonDangNhap_Click(object sender, EventArgs e)
         {
             string user = txtUser.Text.Trim();
@@ -35,32 +34,36 @@ namespace PRO131
             var nhanVien = da.NhanViens.FirstOrDefault(x => x.TenNguoiDung == user && x.MatKhau == pass);
             if (nhanVien != null)
             {
-                // Nếu người dùng chọn vai trò là quản lý và vai trò trong DB là "QuanLy" thì mở FormQuanLy
-                if (nhanVien.VaiTro == "QuanLy")
+                if (nhanVien.TrangThai == "Nghỉ làm")
                 {
-                    FormQuanLy fql = new FormQuanLy(nhanVien.ID_NhanVien);
+                    MessageBox.Show("Tài khoản của bạn đã bị khóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (nhanVien.VaiTro == "Quản lý")
+                {
+                    FormQuanLy fql = new FormQuanLy(nhanVien.TenNguoiDung, nhanVien.ID_NhanVien, nhanVien.VaiTro);
                     fql.Show();
                     this.Hide();
                     MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                else if (nhanVien.VaiTro == "NhanVien")
+                else if (nhanVien.VaiTro == "Nhân viên")
                 {
-                    FormNhanVien fnv = new FormNhanVien();
-                    fnv.Show();
+                    FormQuanLy fql = new FormQuanLy(nhanVien.TenNguoiDung, nhanVien.ID_NhanVien, nhanVien.VaiTro);
+                    fql.Show();
                     this.Hide();
                     MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 else
                 {
-                    MessageBox.Show("Sai tài khoản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Tài khoản không tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
             else
             {
-                MessageBox.Show("Tài khoản không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Sai tài khoản hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -74,6 +77,13 @@ namespace PRO131
             {
                 txtPass.PasswordChar = '*';
             }
+        }
+
+        private void labeQuenMK_DoubleClick(object sender, EventArgs e)
+        {
+            QuenMK mk = new QuenMK();
+            mk.Show();
+            this.Hide();
         }
     }
 }

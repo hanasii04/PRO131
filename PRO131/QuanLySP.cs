@@ -13,11 +13,16 @@ namespace PRO131
 {
     public partial class QuanLySP : Form
     {
+        private string tenNguoiDung;
         private string idNhanVien;
-        public QuanLySP(string idNhanVien)
+        private string vaiTro;
+        public QuanLySP(string tenNguoiDung, string idNhanVien, string vaiTro)
         {
             InitializeComponent();
+            this.tenNguoiDung = tenNguoiDung;
             this.idNhanVien = idNhanVien;
+            this.vaiTro = vaiTro;
+            labeUsername.Text = "Xin chào: " + tenNguoiDung;
         }
 
         DuAn da = new DuAn();
@@ -49,7 +54,6 @@ namespace PRO131
                             ID_KichCo = kichCo.ID_KichCo,
                             ThuongHieu = thuongHieu.TenThuongHieu,
                             ID_ThuongHieu = thuongHieu.ID_ThuongHieu,
-                            HinhAnh = ctsp.HinhAnh,
                             TrangThai = ctsp.TrangThai,
                             NgayTao = sp.NgayTao,
                             NgayCapNhat = sp.NgayCapNhat,
@@ -59,20 +63,29 @@ namespace PRO131
             var result = query.ToList();
             gridViewQLSP.DataSource = result;
 
-            gridViewQLSP.Columns["ID_SanPham"].HeaderText = "ID";
+            gridViewQLSP.Columns["ID_SanPham"].HeaderText = "ID Sản phẩm";
+            gridViewQLSP.Columns["ID_ChiTietSP"].HeaderText = "ID Chi tiết sản phẩm";
             gridViewQLSP.Columns["TenSanPham"].HeaderText = "Tên sản phẩm";
             gridViewQLSP.Columns["GiaNhap"].HeaderText = "Giá nhập";
             gridViewQLSP.Columns["GiaBan"].HeaderText = "Giá bán";
             gridViewQLSP.Columns["SoLuong"].HeaderText = "Số lượng";
             gridViewQLSP.Columns["MauSac"].HeaderText = "Màu sắc";
+            gridViewQLSP.Columns["ID_MauSac"].HeaderText = "ID Màu sắc";
             gridViewQLSP.Columns["KichCo"].HeaderText = "Kích cỡ";
+            gridViewQLSP.Columns["ID_KichCo"].HeaderText = "ID Kích cỡ";
             gridViewQLSP.Columns["ThuongHieu"].HeaderText = "Thương hiệu";
-            gridViewQLSP.Columns["HinhAnh"].HeaderText = "Hình ảnh";
+            gridViewQLSP.Columns["ID_ThuongHieu"].HeaderText = "ID Thương hiệu";
             gridViewQLSP.Columns["TrangThai"].HeaderText = "Trạng thái";
             gridViewQLSP.Columns["NgayTao"].HeaderText = "Ngày tạo";
             gridViewQLSP.Columns["NgayCapNhat"].HeaderText = "Ngày cập nhật";
             gridViewQLSP.Columns["NguoiTao"].HeaderText = "Người tạo";
             gridViewQLSP.Columns["NguoiCapNhat"].HeaderText = "Người cập nhật";
+
+            gridViewQLSP.Columns["ID_SanPham"].Visible = false;
+            gridViewQLSP.Columns["ID_ChiTietSP"].Visible = false;
+            gridViewQLSP.Columns["ID_MauSac"].Visible = false;
+            gridViewQLSP.Columns["ID_KichCo"].Visible = false;
+            gridViewQLSP.Columns["ID_ThuongHieu"].Visible = false;
         }
 
 
@@ -86,16 +99,16 @@ namespace PRO131
             string mauSac = txtMauSac.Text.Trim();
             string kichCo = txtSize.Text.Trim();
             string thuongHieu = txtThuongHieu.Text.Trim();
-            string hinhAnh = txtHinhAnh.Text.Trim();
             string trangThai = "";
 
             if (radioConHang.Checked)
             {
                 trangThai = "Còn hàng";
             }
-            if (radioHetHang.Checked)
+            if (!radioConHang.Checked)
             {
-                trangThai = "Hết hàng";
+                MessageBox.Show("Trạng thái không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
 
             if (string.IsNullOrEmpty(tenSP) 
@@ -105,7 +118,6 @@ namespace PRO131
                 || string.IsNullOrEmpty(mauSac) 
                 || string.IsNullOrEmpty(kichCo)
                 || string.IsNullOrEmpty(thuongHieu) 
-                || string.IsNullOrEmpty(hinhAnh)
                 )
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -128,7 +140,6 @@ namespace PRO131
             // Khai báo biến để lưu trữ dữ liệu sau khi chuyển đổi
             decimal giaNhapS;
             decimal giaBanS;
-
             // Kiểm tra nếu giá nhập và giá bán là số và lớn hơn 0, đồng thời giá bán phải lớn hơn giá nhập
             if (!decimal.TryParse(giaNhap, out giaNhapS) || !decimal.TryParse(giaBan, out giaBanS) ||
                 giaNhapS <= 0 || giaBanS <= 0)
@@ -158,6 +169,18 @@ namespace PRO131
                 return;
             }
 
+            // Kiểm tra xem sản phẩm đã tồn tại chưa
+            var sanPhamTonTai = da.ChiTietSanPhams.FirstOrDefault
+                            (x => x.SanPham.TenSanPham == tenSP
+                             && x.mauSac.TenMauSac == mauSac
+                             && x.kichCo.TenKichCo == kichCo
+                             && x.thuongHieu.TenThuongHieu == thuongHieu);
+            if (sanPhamTonTai != null)
+            {
+                MessageBox.Show("Sản phẩm đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             SANPHAM sp = new SANPHAM
             {
                 ID_SanPham = Guid.NewGuid().ToString(), // Sử dụng Guid để tạo ID duy nhất
@@ -166,8 +189,8 @@ namespace PRO131
                 GiaBan = giaBanS,
                 NgayTao = DateTime.Now,
                 NgayCapNhat = DateTime.Now,
-                NguoiTao = idNhanVien, 
-                NguoiCapNhat = idNhanVien,
+                NguoiTao = tenNguoiDung, 
+                NguoiCapNhat = tenNguoiDung,
                 ID_NhanVien = idNhanVien
 
             };
@@ -198,12 +221,11 @@ namespace PRO131
                 ID_KichCo = kc.ID_KichCo,
                 ID_MauSac = ms.ID_MauSac,
                 SoLuong = soLuongS,
-                HinhAnh = hinhAnh,
                 TrangThai = trangThai,
                 NgayTao = DateTime.Now,
                 NgayCapNhat = DateTime.Now,
-                NguoiTao = idNhanVien, 
-                NguoiCapNhat = idNhanVien,
+                NguoiTao = tenNguoiDung, 
+                NguoiCapNhat = tenNguoiDung,
                 ID_NhanVien = idNhanVien
             };
 
@@ -231,20 +253,21 @@ namespace PRO131
             {
                 DataGridViewRow row = gridViewQLSP.Rows[e.RowIndex];
 
-                labelIDSanPham.Text = row.Cells["ID_SanPham"].Value.ToString();
-                labelIDCTSP.Text = row.Cells["ID_ChiTietSP"].Value.ToString();
-                labelIDMauSac.Text = row.Cells["ID_MauSac"].Value.ToString();
-                labelIDKichCo.Text = row.Cells["ID_KichCo"].Value.ToString();
-                labelIDThuongHieu.Text = row.Cells["ID_ThuongHieu"].Value.ToString();
+                labeID_SP.Text = row.Cells["ID_SanPham"].Value.ToString();
+                labeID_CTSP.Text = row.Cells["ID_ChiTietSP"].Value.ToString();
+                labeNgayTao.Text = row.Cells["NgayTao"].Value.ToString();
+                labeNguoiTao.Text = row.Cells["NguoiTao"].Value.ToString();
+                labeNgayCapNhat.Text = row.Cells["NgayCapNhat"].Value.ToString();
+                labeNguoiCapNhat.Text = row.Cells["NguoiCapNhat"].Value.ToString();
+
+
                 txtTenSP.Text = row.Cells["TenSanPham"].Value.ToString();
                 txtGiaNhap.Text = row.Cells["GiaNhap"].Value.ToString();
                 txtGiaBan.Text = row.Cells["GiaBan"].Value.ToString();
                 txtSoLuong.Text = row.Cells["SoLuong"].Value.ToString();
-                pbQLSP.ImageLocation = row.Cells["HinhAnh"].Value.ToString();
                 txtThuongHieu.Text = row.Cells["ThuongHieu"].Value.ToString();
                 txtMauSac.Text = row.Cells["MauSac"].Value.ToString();
                 txtSize.Text = row.Cells["KichCo"].Value.ToString();
-                txtHinhAnh.Text = row.Cells["HinhAnh"].Value.ToString();
                 string trangThai = row.Cells["TrangThai"].Value.ToString();
                 if (trangThai == "Còn hàng")
                 {
@@ -259,12 +282,8 @@ namespace PRO131
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            labelIDCTSP.Text = "...";
-            labelIDKichCo.Text = "...";
-            labelIDMauSac.Text = "...";
-            labelIDSanPham.Text = "...";
-            labelIDThuongHieu.Text = "...";
-            txtHinhAnh.Text = "";
+            labeID_CTSP.Text = "...";
+            labeID_SP.Text = "...";
             txtGiaBan.Text = "";
             txtGiaNhap.Text = "";
             txtMauSac.Text = "";
@@ -285,7 +304,6 @@ namespace PRO131
             string mauSac = txtMauSac.Text.Trim();
             string kichCo = txtSize.Text.Trim();
             string thuongHieu = txtThuongHieu.Text.Trim();
-            string hinhAnh = txtHinhAnh.Text.Trim();
             string trangThai = "";
 
             if (radioConHang.Checked)
@@ -300,7 +318,7 @@ namespace PRO131
             if (string.IsNullOrEmpty(tenSP) || string.IsNullOrEmpty(giaNhap)
                 || string.IsNullOrEmpty(giaBan) || string.IsNullOrEmpty(soLuong)
                 || string.IsNullOrEmpty(mauSac) || string.IsNullOrEmpty(kichCo)
-                || string.IsNullOrEmpty(thuongHieu) || string.IsNullOrEmpty(hinhAnh))
+                || string.IsNullOrEmpty(thuongHieu))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -348,41 +366,54 @@ namespace PRO131
                 return;
             }
 
-            var sp = da.SanPhams.FirstOrDefault(x => x.ID_SanPham  == labelIDSanPham.Text);
+            if(gridViewQLSP.SelectedRows.Count > 0)
+            {
+                string idMauSac = gridViewQLSP.SelectedRows[0].Cells["ID_MauSac"].Value.ToString();
+                string idKichCo = gridViewQLSP.SelectedRows[0].Cells["ID_KichCo"].Value.ToString();
+                string idThuongHieu = gridViewQLSP.SelectedRows[0].Cells["ID_ThuongHieu"].Value.ToString();
+
+                if(idMauSac != null)
+                {
+                    var ms = da.MauSacs.FirstOrDefault(x => x.ID_MauSac == idMauSac);
+                    if (ms != null)
+                    {
+                        ms.TenMauSac = mauSac;
+                    }
+                }
+                if (idKichCo != null)
+                {
+                    var kc = da.KichCos.FirstOrDefault(x => x.ID_KichCo == idKichCo);
+                    if (kc != null)
+                    {
+                        kc.TenKichCo = kichCo;
+                    }
+                }
+                if (idThuongHieu != null)
+                {
+                    var th = da.ThuongHieus.FirstOrDefault(x => x.ID_ThuongHieu == idThuongHieu);
+                    if (th != null)
+                    {
+                        th.TenThuongHieu = thuongHieu;
+                    }
+                }
+            }    
+
+            var sp = da.SanPhams.FirstOrDefault(x => x.ID_SanPham  == labeID_SP.Text);
             if(sp != null)
             {
                 sp.TenSanPham = tenSP;
                 sp.GiaNhap = giaNhapS;
                 sp.GiaBan = giaBanS;
                 sp.NgayCapNhat = DateTime.Now;
-                sp.NguoiCapNhat = idNhanVien;
+                sp.NguoiCapNhat = tenNguoiDung;
             };
 
-            var ms = da.MauSacs.FirstOrDefault(x => x.ID_MauSac == labelIDMauSac.Text);
-            if (ms != null)
-            {
-                ms.TenMauSac = mauSac;
-            }
-
-            var kc = da.KichCos.FirstOrDefault(x => x.ID_KichCo == labelIDKichCo.Text);
-            if (kc != null)
-            {
-                kc.TenKichCo = kichCo;
-            }
-
-            var th = da.ThuongHieus.FirstOrDefault(x => x.ID_ThuongHieu == labelIDThuongHieu.Text);
-            if (th != null)
-            {
-                th.TenThuongHieu = thuongHieu;
-            }
-
-            var ctsp = da.ChiTietSanPhams.FirstOrDefault(x => x.ID_ChiTietSP == labelIDCTSP.Text);
+            var ctsp = da.ChiTietSanPhams.FirstOrDefault(x => x.ID_ChiTietSP == labeID_CTSP.Text);
             if(ctsp != null)
             {
-                ctsp.HinhAnh = hinhAnh;
                 ctsp.TrangThai = trangThai;
                 ctsp.NgayCapNhat = DateTime.Now;
-                ctsp.NguoiCapNhat = idNhanVien;
+                ctsp.NguoiCapNhat = tenNguoiDung;
             }
 
             try
@@ -395,11 +426,10 @@ namespace PRO131
             {
                 MessageBox.Show("Lỗi: " + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-}
+        }
 
         private void cbbLocTrangThai_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedStatus = cbbLocTrangThai.Text;
             var query = from sp in da.SanPhams
                         join ctsp in da.ChiTietSanPhams
                         on sp.ID_SanPham equals ctsp.ID_SanPham
@@ -425,7 +455,6 @@ namespace PRO131
                             ID_KichCo = kichCo.ID_KichCo,
                             ThuongHieu = thuongHieu.TenThuongHieu,
                             ID_ThuongHieu = thuongHieu.ID_ThuongHieu,
-                            HinhAnh = ctsp.HinhAnh,
                             TrangThai = ctsp.TrangThai,
                             NgayTao = sp.NgayTao,
                             NgayCapNhat = sp.NgayCapNhat,
@@ -433,6 +462,7 @@ namespace PRO131
                             NguoiCapNhat = nv.TenNguoiDung
                         };
 
+            string selectedStatus = cbbLocTrangThai.Text;
             if (selectedStatus != "Tất cả")
             {
                 query = query.Where(x => x.TrangThai == selectedStatus);
@@ -485,7 +515,6 @@ namespace PRO131
                             ID_KichCo = kichCo.ID_KichCo,
                             ThuongHieu = thuongHieu.TenThuongHieu,
                             ID_ThuongHieu = thuongHieu.ID_ThuongHieu,
-                            HinhAnh = ctsp.HinhAnh,
                             TrangThai = ctsp.TrangThai,
                             NgayTao = sp.NgayTao,
                             NgayCapNhat = sp.NgayCapNhat,
@@ -506,7 +535,7 @@ namespace PRO131
                     case "Kích cỡ":
                         query = query.Where(x => x.KichCo.ToLower().Contains(searchValue));
                         break;
-                    case "Thương Hiệu":
+                    case "Thương hiệu":
                         query = query.Where(x => x.ThuongHieu.ToLower().Contains(searchValue));
                         break;
                     default:
@@ -519,7 +548,7 @@ namespace PRO131
 
             if (result.Count == 0)
             {
-                gridViewQLSP.DataSource = null; // Hoặc gridViewQLSP.Rows.Clear() nếu bạn muốn xóa các hàng cũ
+                gridViewQLSP.DataSource = null;
                 MessageBox.Show("Không tìm thấy kết quả nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
@@ -528,5 +557,11 @@ namespace PRO131
             }
         }
 
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            FormQuanLy fql = new FormQuanLy(idNhanVien, tenNguoiDung, vaiTro);
+            fql.Show();
+            this.Hide();
+        }
     }
 }
