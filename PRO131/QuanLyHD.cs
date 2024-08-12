@@ -35,7 +35,7 @@ namespace PRO131
             gridViewHoaDon.Columns["NhanVien"].Visible = false;
             gridViewHoaDon.Columns["Voucher"].Visible = false;
             gridViewHoaDon.Columns["ID_NhanVien"].Visible = false;
-            //gridViewHoaDon.Columns["ID_Voucher"].Visible = false;
+            gridViewHoaDon.Columns["ID_Voucher"].Visible = false;
         }
 
         private void gridViewHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)

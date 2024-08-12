@@ -29,6 +29,7 @@ namespace PRO131
 
         private void QuanLySP_Load(object sender, EventArgs e)
         {
+            // Lấy ra thông tin sản phẩm từ các bảng
             var query = from sp in da.SanPhams
                         join ctsp in da.ChiTietSanPhams
                         on sp.ID_SanPham equals ctsp.ID_SanPham
@@ -121,12 +122,6 @@ namespace PRO131
                 )
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (!radioConHang.Checked && !radioHetHang.Checked)
-            {
-                MessageBox.Show("Vui lòng chọn Trạng thái", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -368,6 +363,7 @@ namespace PRO131
 
             if(gridViewQLSP.SelectedRows.Count > 0)
             {
+                // Lấy giá trị các id (ms, kc, th) từ dòng được chọn
                 string idMauSac = gridViewQLSP.SelectedRows[0].Cells["ID_MauSac"].Value.ToString();
                 string idKichCo = gridViewQLSP.SelectedRows[0].Cells["ID_KichCo"].Value.ToString();
                 string idThuongHieu = gridViewQLSP.SelectedRows[0].Cells["ID_ThuongHieu"].Value.ToString();
@@ -476,7 +472,8 @@ namespace PRO131
         {
             string searchValue = txtTimKiem.Text.Trim().ToLower();
             var selectedItem = cbbTimKiem.SelectedItem;
-            string searchField = selectedItem?.ToString();
+            string searchField = selectedItem?.ToString(); // Nếu biến selectedItem != null thì chuyển sang dạng chuỗi
+                                                           // Còn nếu = null thì searchField cũng = null
 
             if (selectedItem == null || string.IsNullOrEmpty(searchField))
             {

@@ -413,6 +413,16 @@ namespace PRO131
 
             var result = query.ToList();
             gridViewQLNV.DataSource = result;
+
+            if (result.Count == 0)
+            {
+                gridViewQLNV.DataSource = null;
+                MessageBox.Show("Không tìm thấy kết quả nào", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                gridViewQLNV.DataSource = result;
+            }
         }
 
     }

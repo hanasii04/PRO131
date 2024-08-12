@@ -281,7 +281,6 @@ namespace PRO131
 
                 gridViewHoaDonChiTiet.DataSource = chiTietList;
 
-                // Thiết lập tiêu đề cho các cột trong gridViewHoaDonChiTiet
                 gridViewHoaDonChiTiet.Columns["ID_HoaDonChiTiet"].HeaderText = "ID Chi tiết hóa đơn";
                 gridViewHoaDonChiTiet.Columns["ID_HoaDon"].HeaderText = "ID Hóa đơn";
                 gridViewHoaDonChiTiet.Columns["TenSanPham"].HeaderText = "Tên sản phẩm";
@@ -321,11 +320,11 @@ namespace PRO131
                 LoadHoaDon();
                 gridViewHoaDonChiTiet.DataSource = null;
 
-                MessageBox.Show("Hóa đơn và chi tiết hóa đơn đã được xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Hóa đơn đã được xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("Vui lòng chọn hóa đơn cần xóa từ danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn hóa đơn cần xóa từ danh sách", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -338,7 +337,7 @@ namespace PRO131
             // Kiểm tra giá trị thành tiền có hợp lệ không
             if (!decimal.TryParse(labeThanhTien.Text, out thanhTien))
             {
-                MessageBox.Show("Giá trị thành tiền không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Giá trị thành tiền không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 buttonThanhToan.Enabled = false;
                 return;
             }
@@ -346,7 +345,7 @@ namespace PRO131
             // Kiểm tra tiền khách đưa có hợp lệ không
             if (!decimal.TryParse(txtTienKhachDua.Text, out tienKhachDua))
             {
-                MessageBox.Show("Số tiền khách đưa không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Số tiền khách đưa không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 buttonThanhToan.Enabled = false;
                 return;
             }
@@ -376,7 +375,6 @@ namespace PRO131
             // Kiểm tra tên khách hàng có bị bỏ trống hoặc chỉ chứa chữ không
             if (string.IsNullOrEmpty(tenKH) || !tenKH.All(char.IsLetter))
             {
-                // Hiển thị cảnh báo và yêu cầu người dùng nhập tên khách hàng
                 DialogResult result = MessageBox.Show("Tên khách hàng đang bị bỏ trống, bạn có muốn điền vào không?", "Thông báo",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning
@@ -386,7 +384,6 @@ namespace PRO131
                 {
                     return; // Kết thúc hàm để người dùng có thể nhập tên
                 }
-                // Nếu chọn "No", sử dụng tên khách hàng mặc định
                 tenKH = "Khách vãng lai";
             }
 
@@ -400,7 +397,7 @@ namespace PRO131
 
                 if (result == DialogResult.Yes)
                 {
-                    return; // Kết thúc hàm để người dùng có thể nhập mã giảm giá
+                    return;
                 }
             }
             else
@@ -428,7 +425,6 @@ namespace PRO131
                     thanhTien -= soTienGiam;
                     hoaDon.TongTien = thanhTien;
 
-                    //labeTienGiam.Text = soTienGiam.ToString("N0") + " VND";
                     labeThanhTien.Text = thanhTien.ToString("N0") + " VND";
 
                     voucher.SoLuong -= 1;
@@ -447,13 +443,11 @@ namespace PRO131
 
                 da.SaveChanges();
 
-                // Xóa dữ liệu từ gridView sau khi thanh toán
                 gridViewHoaDon.DataSource = null;
                 gridViewHoaDonChiTiet.DataSource = null;
 
-                // Load lại danh sách sản phẩm sau khi thanh toán 
                 LoadSanPham();
-                buttonXuatHD.Enabled = true;
+                buttonXuatHD.Enabled = true; // Mở nút Xuất hóa đơn khi thanh toán thành công
                 MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -598,10 +592,8 @@ namespace PRO131
             decimal thanhTien = 0m;
             decimal soTienGiam = 0m;
 
-            // Kiểm tra nếu mã giảm giá không bị bỏ trống
             if (!string.IsNullOrEmpty(mgg))
             {
-                // Kiểm tra mã giảm giá trong database
                 VOUCHER voucher = da.Vouchers.FirstOrDefault(v => v.TenVoucher == mgg);
                 if (voucher != null)
                 {
@@ -615,7 +607,6 @@ namespace PRO131
                         soTienGiam = thanhTien * phanTramGiam;
                         thanhTien -= soTienGiam;
 
-                        // Cập nhật các label
                         labeTienGiam.Text = soTienGiam.ToString("N0") + " VND";
                         labeThanhTien.Text = thanhTien.ToString("N0") + " VND";
 
