@@ -483,8 +483,8 @@ namespace PRO131
                         document.Add(new Paragraph("\n"));
 
                         // Thêm thông tin hóa đơn
-                        document.Add(new Paragraph("THONG TIN HOA ĐON:", fontHeader));
-                        document.Add(new Paragraph($"Ma hoa đon: {labeMaHD.Text}", fontNormal));
+                        document.Add(new Paragraph("THONG TIN HOA DON:", fontHeader));
+                        document.Add(new Paragraph($"Ma hoa don: {labeMaHD.Text}", fontNormal));
                         document.Add(new Paragraph($"Ten khach hang: {txtTenKH.Text.Trim()}", fontNormal));
                         document.Add(new Paragraph($"Ten nhan vien: {labeNhanVien.Text}", fontNormal));
                         document.Add(new Paragraph($"Ngay tao: {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")}", fontNormal));
